@@ -78,6 +78,7 @@ stylize any heading tags withing white-panel below
     <h2>Google I/O 2016</h2>
     <button type="button" class="btn btn-success" id="refresh_btn">Refresh</button>
     <hr>
+    <img id="loader" style="height:80px;width:80px;" src="http://www.chimply.com/coconut/images/1034590" alt="">
     <section id="pinBoot"></section>
     <hr>
   </div>
@@ -279,23 +280,23 @@ http://www.jqueryscript.net/layout/Simple-jQuery-Plugin-To-Create-Pinterest-Styl
 	}
 
 	function call_request() {
+		$("#loader").show();
 		$.ajax(settings).done(function (response) {
 			var images = response['data'];
 			for (var i = 0; i < images.length; i++) {				
 				$("#pinBoot").append('<article class="white-panel"><img src="'+images[i]['picUrl']+'" alt=""></article>');
 				// $("#main").append('<div class="alert alert-success col-md-3" role="alert"><img class="img-responsive" src="'+images[i]['picUrl']+'" alt=""></div>');
 			};
+			$("#loader").hide();
 		});
 	}
 	call_request();
-	$("#loader").hide();
+	
 		
 
 	$("#refresh_btn").click(function(){
-		$("#loader").show();
 		$("#pinBoot").html("");
 		call_request();
-		$("#loader").hide();
 	});
 </script>
 
