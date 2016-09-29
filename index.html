@@ -73,9 +73,10 @@ stylize any heading tags withing white-panel below
 	</div>
 </div> -->
 
-<div class="container">
+<div class="container" style="text-align:center;">
   <div class="row">
     <h2>Google I/O 2016</h2>
+    <button type="button" class="btn btn-success" id="refresh_btn">Refresh</button>
     <hr>
     <section id="pinBoot"></section>
     <hr>
@@ -90,7 +91,7 @@ stylize any heading tags withing white-panel below
 
 $(document).ready(function() {
 $('#pinBoot').pinterest_grid({
-no_columns: 2,
+no_columns: 1,
 padding_x: 10,
 padding_y: 10,
 margin_bottom: 50,
@@ -292,7 +293,7 @@ http://www.jqueryscript.net/layout/Simple-jQuery-Plugin-To-Create-Pinterest-Styl
 
 	$("#refresh_btn").click(function(){
 		$("#loader").show();
-		$("#main").html("");
+		$("#pinBoot").html("");
 		call_request();
 		$("#loader").hide();
 	});
