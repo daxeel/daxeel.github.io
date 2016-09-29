@@ -75,31 +75,22 @@ stylize any heading tags withing white-panel below
 
 <div class="container">
   <div class="row">
-    <h2>EVENT NAME</h2>
+    <h2>Google I/O 2016</h2>
     <hr>
-    <section id="pinBoot">
-
-      
-
-    </section>
-
-
+    <section id="pinBoot"></section>
     <hr>
-
-
   </div>
-
 </div>
+
+
+
 
 <script>
 
 
-
-
-
 $(document).ready(function() {
 $('#pinBoot').pinterest_grid({
-no_columns: 4,
+no_columns: 2,
 padding_x: 10,
 padding_y: 10,
 margin_bottom: 50,
@@ -289,9 +280,7 @@ http://www.jqueryscript.net/layout/Simple-jQuery-Plugin-To-Create-Pinterest-Styl
 	function call_request() {
 		$.ajax(settings).done(function (response) {
 			var images = response['data'];
-			for (var i = 0; i < images.length; i++) {
-				console.log(images[i]);
-				
+			for (var i = 0; i < images.length; i++) {				
 				$("#pinBoot").append('<article class="white-panel"><img src="'+images[i]['picUrl']+'" alt=""></article>');
 				// $("#main").append('<div class="alert alert-success col-md-3" role="alert"><img class="img-responsive" src="'+images[i]['picUrl']+'" alt=""></div>');
 			};
