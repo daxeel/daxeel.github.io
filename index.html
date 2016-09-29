@@ -1,28 +1,60 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Hank Quinlan, Horrible Cop</title>
-	</head>
-	<body>
-		<nav>
-    		<ul>
-        		<li><a href="/">Home</a></li>
-	        	<li><a href="/about">About</a></li>
-        		<li><a href="/cv">CV</a></li>
-        		<li><a href="/blog">Blog</a></li>
-    		</ul>
-		</nav>
-		<div class="container">
-    		<div class="blurb">
-        		<h1>Hi there, I'm Hank Quinlan!</h1>
-				<p>I'm best known as the horrible cop from <em>A Touch of Evil</em> Don't trust me. <a href="/about">Read more about my life...</a></p>
-    		</div><!-- /.blurb -->
-		</div><!-- /.container -->
-		<footer>
-    		<ul>
-        		<li><a href="mailto:hankquinlanhub@gmail.com">email</a></li>
-        		<li><a href="https://github.com/hankquinlan">github.com/hankquinlan</a></li>
-			</ul>
-		</footer>
-	</body>
+<head>
+	<title>Live Photo Feed</title>
+	<!-- Latest compiled and minified CSS & JS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="container" style="text-align:center;">
+	<h1>Event Photo Feed</h1>
+	<button type="button" class="btn btn-success" id="refresh_btn">Refresh</button>
+	<br><br>
+
+	<p id="loader">Loading...</p>
+	<div id="main">
+		<!-- <div class="alert alert-success" role="alert">
+			<img class="img-responsive" src="https://scontent.xx.fbcdn.net/v/t34.0-12/14483666_1116626191747464_196828308_n.jpg?_nc_ad=z-m&oh=465da6d0e13af2ad555f830f5a8ed7f0&oe=57EF6B7B" alt="">
+		</div> -->
+	</div>
+</div>
+
+<script>
+	var settings = {
+		"async": true,
+		"crossDomain": true,
+		"url": "https://api.backendless.com/v1/data/TbConclavePics",
+		"method": "GET",
+		"headers": {
+			"application-id": "5EF865FD-5FF1-D0A9-FF36-365EC0335600",
+			"secret-key": "5B51BCA3-2661-EBE9-FF2C-A44106E4EA00",
+			"application-type": "REST",
+			"content-type": "application/json"
+		}
+	}
+
+	function call_request() {
+		$.ajax(settings).done(function (response) {
+			var images = response['data'];
+			for (var i = 0; i < images.length; i++) {
+				$("#main").append('<div class="alert alert-success" role="alert"><img class="img-responsive" src="'+images[i]['picUrl']+'" alt=""></div>');
+			};
+		});
+	}
+	call_request();
+	$("#loader").hide();
+		
+
+	$("#refresh_btn").click(function(){
+		$("#loader").show();
+		$("#main").html("");
+		call_request();
+		$("#loader").hide();
+	})
+</script>
+
+</body>
 </html>
