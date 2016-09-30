@@ -12,86 +12,80 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 	<style>
-		/*
-Ref:
-Thanks to:
-http://www.jqueryscript.net/layout/Simple-jQuery-Plugin-To-Create-Pinterest-Style-Grid-Layout-Pinterest-Grid.html
-*/
+		body {
+			background-color:#eee;   
+		}    
 
-body {
- background-color:#eee;   
-}    
+		#pinBoot {
+			position: relative;
+			max-width: 100%;
+			width: 100%;
+		}
+		img {
+			width: 100%;
+			max-width: 100%;
+			height: auto;
+		}
+		.white-panel {
+			position: absolute;
+			background: white;
+			box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+			padding: 10px;
+		}
 
-#pinBoot {
-  position: relative;
-  max-width: 100%;
-  width: 100%;
-}
-img {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-}
-.white-panel {
-  position: absolute;
-  background: white;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
-  padding: 10px;
-}
-/*
-stylize any heading tags withing white-panel below
-*/
-
-.white-panel h1 {
-  font-size: 1em;
-}
-.white-panel h1 a {
-  color: #A92733;
-}
-.white-panel:hover {
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
-  margin-top: -5px;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
+		.white-panel h1 {
+			font-size: 1em;
+		}
+		.white-panel h1 a {
+			color: #A92733;
+		}
+		.white-panel:hover {
+			box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+			margin-top: -5px;
+			-webkit-transition: all 0.3s ease-in-out;
+			-moz-transition: all 0.3s ease-in-out;
+			-o-transition: all 0.3s ease-in-out;
+			transition: all 0.3s ease-in-out;
+		}
 	</style>
 </head>
 <body>
 
-<!-- <div class="container" style="text-align:center;">
-	<h1>Event Photo Feed</h1>
-	<button type="button" class="btn btn-success" id="refresh_btn">Refresh</button>
-	<br><br>
 
-	<p id="loader">Loading...</p>
-	<div id="main">
-		<div class="alert alert-success" role="alert">
-			<img class="img-responsive" src="https://scontent.xx.fbcdn.net/v/t34.0-12/14483666_1116626191747464_196828308_n.jpg?_nc_ad=z-m&oh=465da6d0e13af2ad555f830f5a8ed7f0&oe=57EF6B7B" alt="">
+
+	<!-- <div class="container" style="text-align:center;">
+		<h1>Event Photo Feed</h1>
+		<button type="button" class="btn btn-success" id="refresh_btn">Refresh</button>
+		<br><br>
+
+		<p id="loader">Loading...</p>
+		<div id="main">
+			<div class="alert alert-success" role="alert">
+				<img class="img-responsive" src="https://scontent.xx.fbcdn.net/v/t34.0-12/14483666_1116626191747464_196828308_n.jpg?_nc_ad=z-m&oh=465da6d0e13af2ad555f830f5a8ed7f0&oe=57EF6B7B" alt="">
+			</div>
 		</div>
+	</div> -->
+
+	<div class="container" style="text-align:center;">
+	    <h2>NSIT 2016</h2>
+	    <button type="button" class="btn btn-success" id="refresh_btn">Refresh</button>
+	    <hr>
+	    <!-- <img id="loader" style="height:80px;width:80px;" src="http://www.chimply.com/coconut/images/1034590" alt=""> -->
+	    <h3 id="loader">Loading Photos...</h3>
+	    <section id="pinBoot">
+	    	<article class="white-panel">
+	    		<video controls><source src="https://video.xx.fbcdn.net/v/t42.3356-2/14548553_1117805134962903_3711033833177481216_n.mp4/video-1475254221.mp4?vabr=536292&oh=4a4e3bce07eb930cf87d7964dc1e515a&oe=57F0B77F" type="video/mp4"></video>
+	    	</article>
+	    </section>
+	    <br><br>
+	    Powered by <a href="https://www.getprattle.com"><img src="http://getprattle.com/images/logo_trans.png" style="width:100px;" alt=""></a>
+	    <br><br>
 	</div>
-</div> -->
 
-<div class="container" style="text-align:center;">
-  <div class="row">
-    <h2>Google I/O 2016</h2>
-    <button type="button" class="btn btn-success" id="refresh_btn">Refresh</button>
-    <hr>
-    <!-- <img id="loader" style="height:80px;width:80px;" src="http://www.chimply.com/coconut/images/1034590" alt=""> -->
-    <h3 id="loader">Loading Photos...</h3>
-    <section id="pinBoot"></section>
-    <hr>
-  </div>
-</div>
+	<script>
 
 
-
-
-<script>
-
-
-$(document).ready(function() {
+	$(document).ready(function() {
 $('#pinBoot').pinterest_grid({
 no_columns: 1,
 padding_x: 10,
@@ -284,8 +278,12 @@ http://www.jqueryscript.net/layout/Simple-jQuery-Plugin-To-Create-Pinterest-Styl
 		$("#loader").show();
 		$.ajax(settings).done(function (response) {
 			var images = response['data'];
-			for (var i = 0; i < images.length; i++) {				
-				$("#pinBoot").append('<article class="white-panel"><img src="'+images[i]['picUrl']+'" alt=""></article>');
+			for (var i = 0; i < images.length; i++) {	
+				if (images[i]['picUrl'].indexOf("https://scontent") >= 0) {
+					$("#pinBoot").append('<article class="white-panel"><img src="'+images[i]['picUrl']+'" alt=""><p style="text-align:left;font-size:20px;"></p></article>');
+				}	
+						
+				
 				// $("#main").append('<div class="alert alert-success col-md-3" role="alert"><img class="img-responsive" src="'+images[i]['picUrl']+'" alt=""></div>');
 			};
 			$("#loader").hide();
@@ -299,7 +297,9 @@ http://www.jqueryscript.net/layout/Simple-jQuery-Plugin-To-Create-Pinterest-Styl
 		$("#pinBoot").html("");
 		call_request();
 	});
-</script>
+
+
+	</script>
 
 </body>
 </html>
