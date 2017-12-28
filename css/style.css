@@ -157,7 +157,7 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 }
 
 #profile .portrate {
-	background-image: url("../img/personal/daxeel.jpg");
+	background-image: url("https://image.ibb.co/nqzp4w/Daxeel_3.jpg");
 	width: 125px;
 	margin: 0 auto;
 	height: 125px;
@@ -657,7 +657,7 @@ ul.timeline li .data .text {
 #labp-heads-wrap {
 	/*background-color: #03bb7a;*/
 	position: relative;
-	height: 180px; 
+	height: 180px;
 }
 
 #labp-heads-wrap:after {
